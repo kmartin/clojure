@@ -150,6 +150,9 @@
           :implements ~(vec i) 
           ~@m)))))
 
+(defmulti deftype-fields "returns a seq of symbols for the fields on an instance of a class created by deftype" 
+  (fn [x] (.getDynamicType x)))
+
 (defmacro deftype
   "Alpha - subject to change
   
@@ -221,6 +224,8 @@
        ~(emit-deftype* name gname (vec hinted-fields) (vec interfaces) methods)
        (defmethod print-method ~tag [o# w#]
          ((var print-deftype) ~(vec (map #(-> % str keyword) fields)) o# w#))
+       (defmethod deftype-fields ~tag [_#]
+	 '(~@fields))
        (defn ~name
          ([~@fields] (new ~classname ~@fields nil nil))
          ([~@fields meta# extmap#] (new ~classname ~@fields meta# extmap#))))))
