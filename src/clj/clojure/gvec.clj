@@ -10,7 +10,7 @@
 
 (in-ns 'clojure.core)
 
-;(set! *warn-on-reflection* true)
+(set! *warn-on-reflection* true)
 
 (deftype VecNode [edit arr])
 
@@ -85,7 +85,7 @@
            s (next this)]
       (if s
         (if (instance? clojure.lang.Counted s)
-          (+ i (.count s))
+          (+ i (.count ^clojure.lang.Counted s))
           (recur (inc i) (next s)))
         i)))
   (equiv [this o]
