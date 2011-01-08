@@ -10,7 +10,7 @@
 
 (in-ns 'clojure.core)
 
-(set! *warn-on-reflection* true)
+;; (set! *warn-on-reflection* true)
 
 (deftype VecNode [edit arr])
 
