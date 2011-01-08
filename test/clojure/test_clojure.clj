@@ -44,6 +44,7 @@
       :java-interop
       :test
       :test-fixtures
+      :load
       ;; libraries
       :clojure-set
       :clojure-xml
